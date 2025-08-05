@@ -1,6 +1,8 @@
 package com.weatherInformation.model;
 
-public class WeatherResponse {
+import java.io.Serializable;
+
+public class WeatherResponse implements Serializable {
     private String city;
     private String temp;
     private String unit;
