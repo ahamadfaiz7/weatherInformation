@@ -1,5 +1,6 @@
 package com.weatherInformation.controller;
 
+import com.weatherInformation.exception.InvalidInputException;
 import com.weatherInformation.model.WeatherResponse;
 import com.weatherInformation.service.WeatherService;
 import org.springframework.web.bind.annotation.*;
@@ -18,4 +19,10 @@ public class WeatherController {
     public WeatherResponse getWeather(@PathVariable String city) {
         return weatherService.getWeatherInfo(city);
     }
+
+    @GetMapping
+    public WeatherResponse getWeatherInfoWithoutCity() {
+        throw new InvalidInputException("City name must be provided in the URL path");
+    }
+
 }
