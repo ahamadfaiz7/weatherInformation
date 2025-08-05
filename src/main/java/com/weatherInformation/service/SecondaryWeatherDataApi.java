@@ -17,7 +17,7 @@ public class SecondaryWeatherDataApi {
         weatherResponseMapData.put("auckland", new WeatherResponse("Auckland", "24", "C", "20/10/2024", "cloudy"));
         weatherResponseMapData.put("wellington", new WeatherResponse("Wellington", "20", "C", "20/10/2024", "sunny"));
         weatherResponseMapData.put("christchurch", new WeatherResponse("Christchurch", "18", "C", "20/10/2024", "rainy"));
-        weatherResponseMapData.put("hamilton", new WeatherResponse("Hamilton", "25", "C", "20/10/2024", "heavy rain"));
+        weatherResponseMapData.put("hamilton", new WeatherResponse("Hamilton", "25", "C", "20/10/2024", "clear sky"));
         weatherResponseMapData.put("queenstown", new WeatherResponse("Queenstown", "08", "C", "20/10/2024", "partially cloudy"));
         weatherResponseMapData.put("dunedin", new WeatherResponse("Dunedin", "10", "C", "20/10/2024", "thunderstorms"));
     }
