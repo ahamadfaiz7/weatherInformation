@@ -13,7 +13,7 @@ import java.util.Map;
  * Secondary external API that returns hardcoded weather data.
  */
 @Component
-public class SecondaryWeatherDataApi {
+public class SecondaryWeatherDataApi implements WeatherDataApi {
 
     private final Map<String, WeatherResponse> weatherResponseMapData = new HashMap<>();
     String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
