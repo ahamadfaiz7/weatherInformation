@@ -68,7 +68,8 @@ To explore and test the API using Swagger when the application is up and running
 
 ## How to Run
 1. Clone the git repository from https://github.com/ahamadfaiz7/weatherInformation
-2. Development was done on branch feature/weatherInfo
+2. Development was carried out on the feature/weatherInfo branch, followed by a merge request to the main branch.
+   You can clone either the feature/weatherInfo or main branch to access the complete codebase.
 2. Make sure Java 17 and Maven are installed.
 3. Run the application using:
 ```bash
@@ -96,6 +97,6 @@ Fetching weather data
 in-memory key/value removed
 External API lookup
 Exception triggers and error messages
-
 You can find these logs in the console output during  the application runs.
+
 -------------------------------------------------------------------------------------------------------------------------
