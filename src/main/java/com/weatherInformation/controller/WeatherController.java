@@ -3,6 +3,7 @@ package com.weatherInformation.controller;
 import com.weatherInformation.exception.InvalidInputException;
 import com.weatherInformation.model.WeatherResponse;
 import com.weatherInformation.service.WeatherService;
+import com.weatherInformation.service.WeatherServiceApi;
 import io.swagger.v3.oas.annotations.Operation;
 import io.swagger.v3.oas.annotations.tags.Tag;
 import org.springframework.web.bind.annotation.*;
@@ -16,9 +17,9 @@ import org.springframework.web.bind.annotation.*;
 
 public class WeatherController {
 
-    private final WeatherService weatherService;
+    private final WeatherServiceApi weatherService;
 
-    public WeatherController(WeatherService weatherService) {
+    public WeatherController(WeatherServiceApi weatherService) {
         this.weatherService = weatherService;
     }
 

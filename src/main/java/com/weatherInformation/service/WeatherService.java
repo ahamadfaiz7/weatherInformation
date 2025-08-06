@@ -14,13 +14,13 @@ import java.util.concurrent.ConcurrentHashMap;
  * data and adding to in memory dataset map.
  */
 @Service
-public class WeatherService {
+public class WeatherService implements WeatherServiceApi{
 
     private static final Logger log = LoggerFactory.getLogger(WeatherService.class);
     private final Map<String, WeatherResponse> inMemoryWeatherData = new ConcurrentHashMap<>();
-    private final SecondaryWeatherDataApi secondaryWeatherDataApi;
+    private final WeatherDataApi secondaryWeatherDataApi;
 
-    public WeatherService(SecondaryWeatherDataApi secondaryWeatherDataApi) {
+    public WeatherService(WeatherDataApi secondaryWeatherDataApi) {
         this.secondaryWeatherDataApi = secondaryWeatherDataApi;
     }
 
@@ -40,7 +40,7 @@ public class WeatherService {
         city = city.toLowerCase();
         if (inMemoryWeatherData.containsKey(city)) {
             if (log.isInfoEnabled()) {
-                log.info("Requested city is found in the dataset  : {}", city);
+                log.info("Requested city is found in the in-memory dataset  : {}", city);
             }
             return inMemoryWeatherData.get(city);
         }
