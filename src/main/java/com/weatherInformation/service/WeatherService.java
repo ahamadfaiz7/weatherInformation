@@ -9,8 +9,11 @@ import org.springframework.stereotype.Service;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
+/**
+ * Service layer that handles business logic for retrieving weather
+ * data and adding to in memory dataset map.
+ */
 @Service
-
 public class WeatherService {
 
     private static final Logger log = LoggerFactory.getLogger(WeatherService.class);
@@ -21,6 +24,15 @@ public class WeatherService {
         this.secondaryWeatherDataApi = secondaryWeatherDataApi;
     }
 
+    /**
+     * Retrieves weather data response for a city, first from the in memory store, then from secondary API.
+     * Automatically removes one entry if the in-memory dataset exceeds 3 cities.
+     * If the weather info is not found for the requested city then it will throw exception.
+     *
+     * @param city
+     * @return WeatherResponse
+     * @throws CityNotFoundException
+     */
     public WeatherResponse getWeatherInfo(String city) {
         if (log.isInfoEnabled()) {
             log.info("fetching results for the city : {}", city);
@@ -34,7 +46,7 @@ public class WeatherService {
         }
 
         if (log.isInfoEnabled()) {
-            log.info("Requested city is not found in the dataset. Fetching the city info from the external API  : {}", city);
+            log.info("Requested city is not found in the in-memory dataset. Fetching the city info from the external API  : {}", city);
         }
         WeatherResponse response = secondaryWeatherDataApi.fetchWeather(city);
         if (response == null) {
@@ -51,7 +63,7 @@ public class WeatherService {
         }
         inMemoryWeatherData.put(city, response);
         if (log.isInfoEnabled()) {
-            log.info("Requested city added to the dataset : {}", city);
+            log.info("Requested city added to the in-memory dataset : {}", city);
         }
         return response;
     }

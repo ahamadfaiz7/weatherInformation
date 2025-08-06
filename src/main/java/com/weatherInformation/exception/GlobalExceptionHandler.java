@@ -10,18 +10,13 @@ import org.springframework.web.bind.annotation.ExceptionHandler;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Global exception handler for the application to catch and format error responses.
+ */
 @ControllerAdvice
 class GlobalExceptionHandler {
     public static final String ERROR = "error";
     private static final Logger log = LoggerFactory.getLogger(GlobalExceptionHandler.class);
-
-    @ExceptionHandler(Exception.class)
-    public ResponseEntity<Map<String, String>> handleException(Exception ex) {
-        log.error("Generic exception: ", ex);
-        Map<String, String> errorResponse = new HashMap<>();
-        errorResponse.put(ERROR, "An unexpected error has happened");
-        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
-    }
 
     @ExceptionHandler(CityNotFoundException.class)
     public ResponseEntity<Map<String, String>> handleCityNotFound(CityNotFoundException ex) {
@@ -37,5 +32,17 @@ class GlobalExceptionHandler {
         Map<String, String> errorResponse = new HashMap<>();
         errorResponse.put(ERROR, ex.getMessage());
         return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(errorResponse);
+    }
+
+    /**
+     * If Spring fails to match any @ExceptionHandler method,then
+     * it propagates to this @ExceptionHandler(Exception.class) method.
+     */
+    @ExceptionHandler(Exception.class)
+    public ResponseEntity<Map<String, String>> handleException(Exception ex) {
+        log.error("Generic exception: ", ex);
+        Map<String, String> errorResponse = new HashMap<>();
+        errorResponse.put(ERROR, "An unexpected error has happened");
+        return ResponseEntity.status(HttpStatus.INTERNAL_SERVER_ERROR).body(errorResponse);
     }
 }

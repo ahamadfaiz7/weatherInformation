@@ -9,13 +9,18 @@ import java.time.format.DateTimeFormatter;
 import java.util.HashMap;
 import java.util.Map;
 
+/**
+ * Secondary external API that returns hardcoded weather data.
+ */
 @Component
 public class SecondaryWeatherDataApi {
 
     private final Map<String, WeatherResponse> weatherResponseMapData = new HashMap<>();
     String currentDate = LocalDate.now().format(DateTimeFormatter.ofPattern("dd/MM/yyyy"));
 
-
+    /**
+     * Initializes dummy  weather data for some supported cities with current date.
+     */
     @PostConstruct
     public void WeatherData() {
         weatherResponseMapData.put("auckland", new WeatherResponse("Auckland", "24", "C", currentDate, "cloudy"));
@@ -26,6 +31,12 @@ public class SecondaryWeatherDataApi {
         weatherResponseMapData.put("dunedin", new WeatherResponse("Dunedin", "10", "C", currentDate, "thunderstorms"));
     }
 
+    /**
+     * Returns weather data for a given city if available.
+     *
+     * @param city the city name
+     * @return weather response or null
+     */
     public WeatherResponse fetchWeather(String city) {
         return weatherResponseMapData.get(city.toLowerCase());
     }
